@@ -10,11 +10,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.70.0",
+    "@anthropic-ai/sdk": "^0.104.1",
     "next": "^15.5.19",
-    "openai": "^6.10.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "openai": "^6.42.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

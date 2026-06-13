@@ -126,7 +126,7 @@ export default function Page() {
       <main className="stage">
         <header className="masthead">
           <p className="eyebrow">VASEY/AI presents</p>
-          <Logo size={84} />
+          <Logo size={72} />
           <h1 className="wordmark">
             <span className="wm-silver">re</span>
             <span className="wm-crimson">PROMPT</span>

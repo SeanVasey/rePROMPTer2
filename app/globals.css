@@ -29,8 +29,12 @@
   /* chrome gradient */
   --chrome: linear-gradient(180deg, #ffffff 0%, #e7e7ec 38%, #9a9aa1 56%, #cccdd4 72%, #76767d 100%);
 
-  --radius: 22px;
-  --radius-sm: 13px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --radius: 24px;
+  --radius-sm: 16px;
+  --touch-target: 44px;
   --font-display: "Space Grotesk", "Helvetica Neue", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
@@ -45,6 +49,10 @@ body {
   padding: 0;
 }
 
+html {
+  background: var(--bg);
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
@@ -52,11 +60,23 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--crimson-bright);
+  outline-offset: 3px;
 }
 
 ::selection {
@@ -68,6 +88,7 @@ button {
 .shell {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
 }
 
@@ -139,7 +160,7 @@ button {
   z-index: 1;
   max-width: 760px;
   margin: 0 auto;
-  padding: clamp(28px, 5vw, 64px) clamp(18px, 4vw, 28px) 56px;
+  padding: clamp(28px, 5vw, 64px) max(clamp(18px, 4vw, 28px), var(--safe-right)) calc(56px + var(--safe-bottom)) max(clamp(18px, 4vw, 28px), var(--safe-left));
 }
 
 /* ----- masthead ------------------------------------------------------------- */
@@ -219,6 +240,30 @@ button {
   font-size: clamp(15px, 2.4vw, 18px);
 }
 
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.hero-pills span {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px -20px rgba(255,255,255,.5) inset;
+}
+
 /* ----- console card --------------------------------------------------------- */
 .console {
   background: var(--panel);
@@ -227,17 +272,34 @@ button {
   padding: clamp(16px, 3vw, 24px);
   backdrop-filter: blur(18px) saturate(120%);
   -webkit-backdrop-filter: blur(18px) saturate(120%);
+  position: relative;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
     0 30px 80px -40px rgba(0, 0, 0, 0.9),
     0 0 0 1px rgba(224, 56, 59, 0.05);
 }
 
+.console::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.1), transparent 30%, rgba(224,56,59,.08) 100%);
+  opacity: .75;
+}
+
+.console > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ----- canvas (input) ------------------------------------------------------- */
 .canvas {
+  position: relative;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-sm);
-  background: rgba(0, 0, 0, 0.28);
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.24));
   overflow: hidden;
 }
 
@@ -274,14 +336,14 @@ button {
 
 .canvas-input {
   width: 100%;
-  min-height: 168px;
+  min-height: 176px;
   resize: vertical;
   border: 0;
   outline: 0;
   background: transparent;
   color: var(--ink);
   padding: 18px 16px;
-  font-size: 16px;
+  font-size: 16px; /* Prevents iOS Safari zoom-on-focus. */
   line-height: 1.6;
   font-family: var(--font-mono);
 }
@@ -327,7 +389,7 @@ button {
   border: 0;
   background: transparent;
   color: var(--ink-3);
-  font-size: 16px;
+  font-size: 16px; /* Prevents iOS Safari zoom-on-focus. */
   line-height: 1;
   padding: 0 2px;
 }
@@ -358,10 +420,12 @@ button {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  min-height: var(--touch-target);
+  transition: border-color 0.18s, color 0.18s, background 0.18s, transform 0.18s;
 }
 
 .ghost-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
   border-color: var(--crimson);
   color: var(--ink);
   background: var(--crimson-soft);
@@ -381,16 +445,19 @@ button {
   background: linear-gradient(180deg, rgba(224, 56, 59, 0.28), rgba(165, 31, 35, 0.22));
   color: #fff;
   border-radius: 11px;
+  min-height: var(--touch-target);
   padding: 11px 18px;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   box-shadow: 0 6px 24px -10px var(--crimson-glow), 0 0 0 1px rgba(224, 56, 59, 0.08) inset;
-  transition: transform 0.12s, box-shadow 0.18s, background 0.18s;
+  transition: transform 0.12s, box-shadow 0.18s, background 0.18s, filter 0.18s;
 }
 
 .primary-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: saturate(1.1);
   background: linear-gradient(180deg, rgba(255, 82, 86, 0.4), rgba(165, 31, 35, 0.3));
   box-shadow: 0 10px 30px -10px var(--crimson-glow);
 }
@@ -443,6 +510,7 @@ button {
   background: rgba(255, 255, 255, 0.02);
   color: var(--ink-2);
   border-radius: 12px;
+  min-height: var(--touch-target);
   padding: 14px 16px;
   font-size: 14px;
   font-weight: 600;
@@ -518,7 +586,7 @@ button {
 .output {
   border: 1px solid var(--hairline);
   border-radius: var(--radius-sm);
-  background: rgba(0, 0, 0, 0.28);
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.26));
   overflow: hidden;
 }
 
@@ -598,6 +666,8 @@ button {
   min-height: 132px;
   max-height: 460px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: rgba(224,56,59,.55) transparent;
   padding: 18px 16px;
 }
 
@@ -904,12 +974,40 @@ button {
 }
 
 /* ----- responsive ----------------------------------------------------------- */
+@media (max-width: 640px) {
+  .stage {
+    padding-top: 22px;
+  }
+  .masthead {
+    margin-bottom: 24px;
+  }
+  .console {
+    border-radius: 28px;
+    padding: 14px;
+  }
+  .output-head {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .output-meta {
+    order: 2;
+    width: 100%;
+    padding-left: 18px;
+  }
+  .output-tools {
+    margin-left: auto;
+  }
+}
+
 @media (max-width: 520px) {
   .mode-grid {
     grid-template-columns: 1fr;
   }
   .canvas-foot {
     flex-wrap: wrap;
+  }
+  .canvas-input {
+    min-height: 220px;
   }
   .primary-btn {
     width: 100%;

@@ -117,6 +117,10 @@ button {
 }
 
 .rp-emblem {
+  display: block;
+  width: clamp(56px, 14vw, 72px);
+  height: auto;
+  margin: 0 auto 4px;
   filter: drop-shadow(0 6px 22px rgba(224, 56, 59, 0.35));
   animation: emblem-float 7s ease-in-out infinite;
 }

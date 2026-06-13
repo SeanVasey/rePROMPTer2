@@ -122,6 +122,8 @@ export default function Page() {
     <div className="shell">
       <div className="bg-glow" aria-hidden="true" />
       <div className="bg-grid" aria-hidden="true" />
+      <div className="bg-vignette" aria-hidden="true" />
+      <div className="bg-noise" aria-hidden="true" />
 
       <main className="stage">
         <header className="masthead">

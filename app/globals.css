@@ -73,12 +73,32 @@ button {
 
 .bg-glow {
   position: fixed;
-  inset: 0;
+  inset: -20%;
   pointer-events: none;
   background:
-    radial-gradient(60% 40% at 50% -5%, rgba(224, 56, 59, 0.22), transparent 60%),
-    radial-gradient(70% 50% at 50% 110%, rgba(224, 56, 59, 0.1), transparent 60%);
+    radial-gradient(46% 38% at 50% -6%, rgba(224, 56, 59, 0.26), transparent 62%),
+    radial-gradient(42% 36% at 82% 8%, rgba(255, 82, 86, 0.14), transparent 60%),
+    radial-gradient(48% 42% at 14% 22%, rgba(165, 31, 35, 0.16), transparent 62%),
+    radial-gradient(70% 52% at 50% 114%, rgba(224, 56, 59, 0.12), transparent 60%);
   z-index: 0;
+  animation: glow-drift 22s ease-in-out infinite;
+}
+
+/* A second, slower-moving aurora layer adds parallax depth to the void. */
+.bg-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(38% 30% at 24% 70%, rgba(224, 56, 59, 0.1), transparent 64%),
+    radial-gradient(34% 30% at 78% 64%, rgba(255, 82, 86, 0.08), transparent 64%);
+  animation: glow-drift 30s ease-in-out infinite reverse;
+}
+
+@keyframes glow-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(2.2%, 1.6%, 0) scale(1.05); }
+  66% { transform: translate3d(-1.8%, -1.2%, 0) scale(1.03); }
 }
 
 .bg-grid {
@@ -86,11 +106,32 @@ button {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 46px 46px;
-  mask-image: radial-gradient(70% 70% at 50% 30%, #000 0%, transparent 85%);
+  mask-image: radial-gradient(72% 64% at 50% 22%, #000 0%, transparent 82%);
   z-index: 0;
+}
+
+/* Vignette + fine grain to kill the flat, "dull" feel of pure #0a0a0b. */
+.bg-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(120% 90% at 50% 0%, transparent 52%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(100% 80% at 50% 100%, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .stage {
@@ -562,9 +603,11 @@ button {
 
 .output-text {
   margin: 0;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.65;
+  /* Reads like prose, not code — proportional display face, roomy leading. */
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  line-height: 1.72;
+  letter-spacing: 0.004em;
   color: var(--ink);
   white-space: pre-wrap;
   word-break: break-word;
@@ -881,7 +924,9 @@ button {
   .rp-emblem,
   .output-dot.live,
   .caret,
-  .app-footer {
+  .app-footer,
+  .bg-glow,
+  .bg-glow::after {
     animation: none;
   }
 }

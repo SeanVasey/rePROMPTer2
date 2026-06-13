@@ -136,6 +136,11 @@ export default function Page() {
             <span className="wm-chip">{VERSION}</span>
           </h1>
           <p className="tagline">The advanced prompt optimization engine.</p>
+          <div className="hero-pills" aria-label="App capabilities">
+            <span>Vision-aware</span>
+            <span>Streaming</span>
+            <span>Recursive</span>
+          </div>
         </header>
 
         <section className="console">

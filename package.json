@@ -2,12 +2,13 @@
   "name": "reprompter2",
   "version": "2.0.0",
   "private": true,
-  "description": "rePROMPTer 2 — prompt enhancement & refinement via Claude Opus 4.8 and GPT-5.5, with recursive iteration.",
+  "description": "rePROMPTer 2 \u2014 prompt enhancement & refinement via Claude Opus 4.8 and GPT-5.5, with recursive iteration.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint || eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.104.1",

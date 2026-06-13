@@ -41,6 +41,23 @@ cp .env.example .env.local   # then add your API keys
 npm run dev                  # http://localhost:3000
 ```
 
+## Available scripts and flags
+
+| Command | Purpose | Notes / useful flags |
+| --- | --- | --- |
+| `npm run dev` | Start the local Next.js dev server. | Add Next flags after `--`, for example `npm run dev -- --hostname 0.0.0.0 --port 3000`. |
+| `npm run build` | Create the production build used by Vercel. | Run before deploys/PRs to verify App Router compilation. |
+| `npm run start` | Serve the built app locally. | Requires `npm run build` first; supports Next flags after `--`. |
+| `npm run lint` | Run linting. | Falls back to `eslint .` if the local Next CLI does not provide `next lint`. |
+| `npm run typecheck` | Run TypeScript without emitting files. | Equivalent to `tsc --noEmit`. |
+
+## Mobile-first polish
+
+The UI is tuned for iOS Safari and standalone PWA use: safe-area-aware page padding,
+44px minimum touch targets for primary controls, 16px input text to prevent focus zoom,
+and momentum scrolling in long output panels. The header capability pills summarize the
+core workflow without adding extra navigation friction on small screens.
+
 ## Install as an app (PWA)
 
 rePROMPTer 2 ships a web app manifest and a full icon set, so it installs to your home

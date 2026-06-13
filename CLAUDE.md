@@ -88,10 +88,13 @@ returns a clear, user-facing error (no silent failure), and the UI surfaces it.
 
 - **Models:** default to `claude-opus-4-8` and `gpt-5.5`. Do not downgrade. Both ids are
   configurable via env — read them from `app/lib/models.ts`.
-- **Claude API:** use the official `@anthropic-ai/sdk`, **streaming** (`messages.stream`),
-  adaptive thinking left off for latency on this short-output task. Never use
-  `budget_tokens`, `temperature`, `top_p` on Opus 4.8 (they 400). See the project's
-  `claude-api` skill for specifics.
+- **Claude API:** use the official `@anthropic-ai/sdk`, **streaming** (`messages.stream`;
+  use `.finalMessage()` if you don't need per-event handling). Adaptive thinking is left
+  off for latency on this short-output task — safe here only because the system prompt
+  forces final-answer-only output (`prompts.ts`); without that, Opus 4.8 can leak reasoning
+  into the visible response, so keep that instruction or turn adaptive thinking on. Never
+  use `budget_tokens`, `temperature`, `top_p`, or `top_k` on Opus 4.8 (they 400). See the
+  project's `claude-api` skill for specifics.
 - **Secrets:** never hardcode keys; never commit `.env*`. Keys live in env only.
 - **Aesthetic:** match the existing tokens and component idiom in `globals.css`. Keep the
   black/crimson/chrome system coherent.

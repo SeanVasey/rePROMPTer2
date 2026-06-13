@@ -10,7 +10,8 @@ export default function Logo({ size = 72 }: { size?: number }) {
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src="/icon.svg"
-      alt="rePROMPTer 2"
+      alt=""
+      aria-hidden="true"
       width={size}
       height={size}
       className="rp-emblem"

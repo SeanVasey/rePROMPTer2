@@ -1,0 +1,27 @@
+{
+  "name": "reprompter2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "rePROMPTer 2 — prompt enhancement & refinement via Claude Opus 4.8 and GPT-5.5, with recursive iteration.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0",
+    "next": "^15.5.19",
+    "openai": "^6.10.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "^15.5.19",
+    "typescript": "^5.7.0"
+  }
+}

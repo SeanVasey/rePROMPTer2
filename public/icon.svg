@@ -1,0 +1,80 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="rePROMPTer 2 icon">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#1a1416"/>
+      <stop offset="55%" stop-color="#0d0a0b"/>
+      <stop offset="100%" stop-color="#050405"/>
+    </radialGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="38%" stop-color="#e9e9ee"/>
+      <stop offset="52%" stop-color="#9a9aa1"/>
+      <stop offset="66%" stop-color="#c8c8cf"/>
+      <stop offset="100%" stop-color="#6f6f76"/>
+    </linearGradient>
+    <linearGradient id="crimson" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff5256"/>
+      <stop offset="55%" stop-color="#e0383b"/>
+      <stop offset="100%" stop-color="#a51f23"/>
+    </linearGradient>
+    <filter id="redglow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softshadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <!-- card -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bg)" stroke="#2a2023" stroke-width="2"/>
+  <rect x="17" y="17" width="478" height="478" rx="111" fill="none" stroke="#e0383b" stroke-opacity="0.18" stroke-width="2"/>
+
+  <!-- circuit traces -->
+  <g stroke="#e0383b" stroke-opacity="0.5" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M64 150 H110 L130 130 H176"/>
+    <path d="M64 196 H96"/>
+    <path d="M448 372 H402 L382 392 H336"/>
+    <path d="M448 326 H416"/>
+    <path d="M96 392 H140"/>
+    <path d="M416 130 H372"/>
+  </g>
+  <g fill="#ff5256">
+    <circle cx="176" cy="130" r="5"/>
+    <circle cx="96" cy="196" r="5"/>
+    <circle cx="336" cy="392" r="5"/>
+    <circle cx="416" cy="326" r="5"/>
+    <circle cx="140" cy="392" r="5"/>
+    <circle cx="372" cy="130" r="5"/>
+  </g>
+
+  <!-- recursive loop arrows -->
+  <g filter="url(#redglow)" fill="none" stroke="url(#crimson)" stroke-width="20" stroke-linecap="round">
+    <path d="M150 196 A118 118 0 0 1 360 150"/>
+    <path d="M362 316 A118 118 0 0 1 152 362"/>
+  </g>
+  <g fill="url(#crimson)" filter="url(#redglow)">
+    <path d="M360 150 l34 -10 -16 32 z"/>
+    <path d="M152 362 l-34 10 16 -32 z"/>
+  </g>
+
+  <!-- quotation marks -->
+  <g fill="#ff5256" opacity="0.92">
+    <path d="M150 188 q-14 0 -14 14 v18 h22 v-22 h-8 q0 -10 10 -10 z"/>
+    <path d="M178 188 q-14 0 -14 14 v18 h22 v-22 h-8 q0 -10 10 -10 z"/>
+  </g>
+  <g fill="#cfcfd6" opacity="0.85">
+    <path d="M340 324 q14 0 14 -14 v-18 h-22 v22 h8 q0 10 -10 10 z"/>
+    <path d="M312 324 q14 0 14 -14 v-18 h-22 v22 h8 q0 10 -10 10 z"/>
+  </g>
+
+  <!-- rp monogram -->
+  <g filter="url(#softshadow)">
+    <text x="256" y="312" text-anchor="middle"
+      font-family="'Helvetica Neue', Arial, sans-serif" font-size="200" font-weight="800"
+      letter-spacing="-12" fill="url(#chrome)" stroke="#3a3a40" stroke-width="1.5">rP</text>
+  </g>
+</svg>

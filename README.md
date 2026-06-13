@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/icon.svg" alt="rePROMPTer 2 logo" width="128" height="128" />
+  <img src="./public/icon.svg" alt="rePROMPTer 2 logo" width="128" height="128" />
 </p>
 
 <h1 align="center">rePROMPTer 2</h1>

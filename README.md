@@ -1,4 +1,8 @@
-# rePROMPTer 2
+<p align="center">
+  <img src="public/icon.svg" alt="rePROMPTer 2 logo" width="128" height="128" />
+</p>
+
+<h1 align="center">rePROMPTer 2</h1>
 
 **rePROMPTer 2** is a prompt enhancement & refinement tool that perfects your prompts via
 LLM-tuning and recursive iteration — the more functional, more aesthetically refined
@@ -24,17 +28,32 @@ cp .env.example .env.local   # then add your API keys
 npm run dev                  # http://localhost:3000
 ```
 
-## Environment variables
+## Configuration flags
 
-| Var                 | Purpose                            |
-| ------------------- | ---------------------------------- |
-| `ANTHROPIC_API_KEY` | Claude Opus 4.8 access (required for Claude) |
-| `OPENAI_API_KEY`    | GPT‑5.5 access (required for GPT)   |
-| `ANTHROPIC_MODEL`   | Optional Claude model override (default `claude-opus-4-8`) |
-| `OPENAI_MODEL`      | Optional OpenAI model override (default `gpt-5.5`) |
+### Environment variables
+
+The complete set of configuration flags the app reads from the environment. Copy
+`.env.example` → `.env.local` for local dev, and set the same values in your Vercel
+project's **Settings → Environment Variables**.
+
+| Flag                | Purpose                              | Required                     | Default            |
+| ------------------- | ------------------------------------ | ---------------------------- | ------------------ |
+| `ANTHROPIC_API_KEY` | Claude Opus 4.8 access               | Yes, to use Claude           | —                  |
+| `OPENAI_API_KEY`    | GPT‑5.5 access                       | Yes, to use GPT              | —                  |
+| `ANTHROPIC_MODEL`   | Override the Claude model id         | No                           | `claude-opus-4-8`  |
+| `OPENAI_MODEL`      | Override the OpenAI model id         | No                           | `gpt-5.5`          |
 
 The app degrades gracefully: if the key for the selected provider is missing, the UI shows
 a clear, actionable message instead of failing silently.
+
+### In-app selectors
+
+The flags you toggle in the UI for each refinement pass:
+
+| Selector  | Options                                                                 |
+| --------- | ----------------------------------------------------------------------- |
+| **Mode**  | `Enhance` · `Expand` · `Clarify` · `Rewrite`                            |
+| **Model** | `Claude Opus 4.8` (`claude-opus-4-8`) · `GPT‑5.5` (`gpt-5.5`)           |
 
 ## Deploy to Vercel
 

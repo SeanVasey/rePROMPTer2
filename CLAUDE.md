@@ -59,6 +59,10 @@ Faithfully derived from the supplied icon restyle and the v2.4.3 screenshot.
   flanked by quotation marks — the recursion = refinement loop.
 - Keep it dark, glossy, high-contrast, restrained. No purple gradients, no generic
   "AI slop" aesthetics.
+- **Logo / app icon assets:** `public/icon.svg` is the canonical SVG source for the
+  README logo and favicon; `public/apple-icon.png` and `public/icon-{32,192,512}.png`
+  are raster variants used by the PWA manifest / iOS home screen; `app/components/Logo.tsx`
+  is the in-app header emblem. Keep these assets in sync when the brand mark changes.
 
 ## Commands
 
@@ -80,6 +84,11 @@ Copy `.env.example` → `.env.local` for local dev; set the same in Vercel proje
 | `OPENAI_API_KEY`    | GPT‑5.5 access                           | — (required for GPT) |
 | `ANTHROPIC_MODEL`   | Override Claude model id                 | `claude-opus-4-8` |
 | `OPENAI_MODEL`      | Override OpenAI model id                 | `gpt-5.5`      |
+
+These four variables are the **complete set** of configuration flags the app reads from the
+environment (see `app/api/refine/route.ts` and `app/lib/models.ts`). The only other
+user-facing "flags" are the in-app selectors — **Mode** (Enhance / Expand / Clarify /
+Rewrite) and **Model** (Opus 4.8 / GPT‑5.5).
 
 The API route degrades gracefully: if the key for the selected provider is missing it
 returns a clear, user-facing error (no silent failure), and the UI surfaces it.

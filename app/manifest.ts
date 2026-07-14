@@ -9,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Perfect your prompts with Claude Opus 4.8 and GPT-5.5 — enhance, expand, clarify, and rewrite via recursive iteration. A VASEY/AI production.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0a0a0b",
-    theme_color: "#0a0a0b",
+    background_color: "#0a090d",
+    theme_color: "#0a090d",
     icons: [
       {
         src: "/icon.svg",
@@ -31,7 +31,7 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
       {
-        src: "/icon-512.png",
+        src: "/icon-512-maskable.png",
         type: "image/png",
         sizes: "512x512",
         purpose: "maskable",

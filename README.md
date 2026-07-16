@@ -69,7 +69,8 @@ screen / desktop as a standalone app with the crimson‑on‑charcoal `rp` mark.
 
 Icons are served from `public/icon.svg` (favicon), `public/apple-icon.png`
 (iOS home screen), and `public/icon-192.png` / `public/icon-512.png` (manifest), generated
-from the faithful red‑on‑charcoal restyle.
+from the faithful red‑on‑charcoal restyle. The in‑app header emblem uses
+`public/icon-optimized.svg` — the same mark on a transparent background.
 
 ## Configuration flags
 
@@ -118,7 +119,8 @@ No `vercel.json` is needed — Next.js is zero-config on Vercel.
 - `app/globals.css` — the full black / crimson / chrome design system.
 - `app/manifest.ts` — PWA web app manifest (icons, theme, standalone display).
 - `public/icon.svg` — app icon / favicon (the chrome `rp` monogram in the crimson recursion
-  loop); `public/apple-icon.png` + `public/icon-{32,192,512}.png` are the raster variants.
+  loop, full tile); `public/icon-optimized.svg` — the transparent-background mark for in-app
+  use; `public/apple-icon.png` + `public/icon-{16,32,48,192,512}.png` are the raster variants.
 
 See [`CLAUDE.md`](./CLAUDE.md) for agent/developer working notes.
 

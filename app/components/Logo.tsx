@@ -3,7 +3,8 @@
  * recursion loop. In the app it renders the transparent-background variant
  * (`/icon-optimized.svg`) so the mark floats on the dark UI without the tile
  * behind it; the tiled `/icon.svg` remains the favicon / PWA / iOS home-screen
- * icon. Both are cut from the same v3 vector master (keep them in sync).
+ * icon. Both are cut from the same vector master (reprompter-icon-ios.svg →
+ * public/icon.svg; keep them in sync).
  */
 export default function Logo({ size = 72 }: { size?: number }) {
   return (

@@ -1,8 +1,9 @@
 // One-off icon generator for rePROMPTer 2.
 //
-// Rasterizes the canonical vector master (public/icon.svg — 900x900, clean
-// continuous red border) into the full favicon + PWA icon set. Re-run with
-// `node scripts/generate-icons.mjs` whenever the master SVG changes.
+// Rasterizes the canonical vector master (public/icon.svg — 900x900,
+// full-bleed red border plate + dark squircle body) into the full favicon +
+// PWA icon set. Re-run with `node scripts/generate-icons.mjs` whenever the
+// master SVG changes.
 //
 //   favicon.ico            -> 16/32/48 (transparent, PNG-in-ICO)
 //   icon-16/32/48.png      -> transparent favicons

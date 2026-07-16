@@ -61,8 +61,10 @@ Faithfully derived from the supplied icon restyle and the v2.4.3 screenshot.
 - Keep it dark, glossy, high-contrast, restrained. No purple gradients, no generic
   "AI slop" aesthetics.
 - **Logo / app icon assets:** `public/icon.svg` is the canonical SVG source (the full
-  crimson-bordered tile) for the README logo, favicon, and PWA / iOS home-screen icon;
-  `public/icon-optimized.svg` is the same v3 mark on a **transparent background** (tile,
+  crimson-bordered tile, cut from `reprompter-icon-ios.svg` — a full-bleed red border
+  plate so iOS's own squircle mask never shows light/dark mode through the corners) for
+  the README logo, favicon, and PWA / iOS home-screen icon;
+  `public/icon-optimized.svg` is the same mark on a **transparent background** (tile,
   border, and vignette stripped) for in-app use and anywhere alpha is ideal;
   `public/apple-icon.png` and `public/icon-{16,32,48,192,512}.png` (+ `icon-512-maskable.png`)
   are raster variants used by the PWA manifest / iOS home screen; `app/components/Logo.tsx`

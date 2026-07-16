@@ -1,15 +1,17 @@
 /**
- * The rePROMPTer 2 brand emblem — renders the official app icon so the header
- * logo is always identical to the favicon / PWA icon (one source of truth).
- * The icon is the chrome "rP" monogram inside the crimson recursion loop.
+ * The rePROMPTer 2 brand emblem — the chrome "rP" monogram inside the crimson
+ * recursion loop. In the app it renders the transparent-background variant
+ * (`/icon-optimized.svg`) so the mark floats on the dark UI without the tile
+ * behind it; the tiled `/icon.svg` remains the favicon / PWA / iOS home-screen
+ * icon. Both are cut from the same v3 vector master (keep them in sync).
  */
 export default function Logo({ size = 72 }: { size?: number }) {
   return (
-    // /icon.svg embeds a raster, which next/image won't optimize without
-    // dangerouslyAllowSVG, so we render it directly to stay in sync with it.
+    // Pure vector, but next/image won't optimize SVG without dangerouslyAllowSVG,
+    // so we render it directly to stay in lockstep with the master mark.
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/icon.svg"
+      src="/icon-optimized.svg"
       alt=""
       aria-hidden="true"
       width={size}

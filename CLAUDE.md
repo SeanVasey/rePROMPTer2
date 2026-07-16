@@ -42,7 +42,8 @@ app/
     models.ts         Model registry (id, label, provider)
     prompts.ts        System prompts per mode
 public/
-  icon.svg            App icon (favicon / PWA), faithful to the restyle
+  icon.svg            App icon — full crimson-bordered tile (favicon / PWA / iOS)
+  icon-optimized.svg  Transparent-background mark (in-app logo / where alpha is ideal)
 ```
 
 ## Brand & design system
@@ -59,10 +60,15 @@ Faithfully derived from the supplied icon restyle and the v2.4.3 screenshot.
   flanked by quotation marks — the recursion = refinement loop.
 - Keep it dark, glossy, high-contrast, restrained. No purple gradients, no generic
   "AI slop" aesthetics.
-- **Logo / app icon assets:** `public/icon.svg` is the canonical SVG source for the
-  README logo and favicon; `public/apple-icon.png` and `public/icon-{32,192,512}.png`
+- **Logo / app icon assets:** `public/icon.svg` is the canonical SVG source (the full
+  crimson-bordered tile) for the README logo, favicon, and PWA / iOS home-screen icon;
+  `public/icon-optimized.svg` is the same v3 mark on a **transparent background** (tile,
+  border, and vignette stripped) for in-app use and anywhere alpha is ideal;
+  `public/apple-icon.png` and `public/icon-{16,32,48,192,512}.png` (+ `icon-512-maskable.png`)
   are raster variants used by the PWA manifest / iOS home screen; `app/components/Logo.tsx`
-  is the in-app header emblem. Keep these assets in sync when the brand mark changes.
+  is the in-app header emblem (renders `icon-optimized.svg`). Regenerate the rasters from
+  `icon.svg` with `node scripts/generate-icons.mjs`. Keep all of these in sync when the
+  brand mark changes.
 
 ## Commands
 
